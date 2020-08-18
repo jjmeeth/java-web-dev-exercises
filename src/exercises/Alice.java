@@ -15,16 +15,25 @@ public class Alice {
 
         String searchTerm = input.nextLine().toLowerCase();
 
-        if (firstSentence.contains(searchTerm)) {
+        if (firstSentence.toLowerCase().contains(searchTerm)) {
             System.out.println("The term '" + searchTerm + "' is in the first sentence of Alice in Wonderland.");
-            System.out.println(firstSentence.indexOf(searchTerm));
+            int index = firstSentence.toLowerCase().indexOf(searchTerm.toLowerCase());
+
             System.out.println(searchTerm.length());
-            firstSentenceMod = firstSentence.replace(searchTerm, "");
+            firstSentenceMod = firstSentence.toLowerCase().replace(searchTerm.toLowerCase(), "");
             System.out.println(firstSentenceMod);
+
+            String firstPart = firstSentence.substring(0, index);
+            String secondPart = firstSentence.substring(index + searchTerm.length());
+
+            System.out.println(firstPart + secondPart);
+
 
         } else {
             System.out.println("That term is not in the sentence.");
         }
+
+        input.close();
 
 
     }
