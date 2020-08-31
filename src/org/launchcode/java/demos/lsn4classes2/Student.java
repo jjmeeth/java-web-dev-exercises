@@ -29,21 +29,52 @@ public class Student {
     }
 
 
-     //TODO: Uncomment and complete the getGradeLevel method here:
-//    public String getGradeLevel() {
-//        // Determine the grade level of the student based on numberOfCredits
-//    }
 
-    // TODO: Complete the addGrade method.
-    public void addGrade(int courseCredits, double grade) {
-        // Update the appropriate fields: numberOfCredits, gpa
+    public String getGradeLevel() {
+        String gradeLevel;
+        if (numberOfCredits <= 29) {
+            gradeLevel = "Freshman";
+        } else if (numberOfCredits <= 59) {
+            gradeLevel = "Sophomore";
+        } else if (numberOfCredits <= 89) {
+            gradeLevel = "Junior";
+        } else {
+            gradeLevel = "Senior";
+        }
+
+        return gradeLevel;
     }
 
-    // TODO: Add your custom 'toString' method here. Make sure it returns a well-formatted String rather
-    //  than just the class fields.
 
-    // TODO: Add your custom 'equals' method here. Consider which fields should match in order to call two
-    //  Student objects equal.
+    public void addGrade(int courseCredits, double grade) {
+        double currentQualityScore = gpa * numberOfCredits;
+        double classQualityScore = courseCredits * grade;
+        double totalQualityScore = currentQualityScore + classQualityScore;
+        numberOfCredits += courseCredits;
+        double newGPA = totalQualityScore / numberOfCredits;
+        gpa = newGPA;
+    }
+
+    public String toString() {
+        return name + " (Student ID: " + studentId + " Credits: " + numberOfCredits + ", GPA: " + gpa + ", Grade Level: " + getGradeLevel() + ")";
+    }
+
+    public boolean equals(Object toBeCompared) {
+        if (toBeCompared == this) {
+            return true;
+        }
+
+        if (toBeCompared == null) {
+            return false;
+        }
+
+        if (toBeCompared.getClass() != getClass()) {
+            return false;
+        }
+
+        Student theStudent = (Student) toBeCompared;
+        return theStudent.getStudentId() == getStudentId();
+    }
 
     public String getName() {
         return name;
@@ -80,10 +111,13 @@ public class Student {
     public static void main(String[] args) {
         Student sally = new Student("Sally",1,1,4.0);
         System.out.println("The Student class works! " + sally.getName() + " is a student!");
-        System.out.println(sally);
-        sally.addGrade(12, 3.5);
-        System.out.println(sally);
+        sally.addGrade(12, 3.5);;
         sally.addGrade(25, 3.8);
-        System.out.println(sally);
+
+        Student zelda = new Student("Zelda Meeth-Varda", 83020, 87, 4.0); System.out.println("Zelda's current grade level: " + zelda.getGradeLevel());
+        System.out.println(zelda.toString());
+        zelda.addGrade(3, 4);
+        System.out.println(zelda.toString());
+
     }
 }
