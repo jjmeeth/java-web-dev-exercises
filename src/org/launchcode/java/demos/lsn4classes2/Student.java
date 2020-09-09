@@ -54,11 +54,12 @@ public class Student {
         double newGPA = totalQualityScore / numberOfCredits;
         gpa = newGPA;
     }
-
+    @Override
     public String toString() {
         return name + " (Student ID: " + studentId + " Credits: " + numberOfCredits + ", GPA: " + gpa + ", Grade Level: " + getGradeLevel() + ")";
     }
 
+    @Override
     public boolean equals(Object toBeCompared) {
         if (toBeCompared == this) {
             return true;
@@ -117,7 +118,7 @@ public class Student {
         Student zelda = new Student("Zelda Meeth-Varda", 83020, 87, 4.0); System.out.println("Zelda's current grade level: " + zelda.getGradeLevel());
         System.out.println(zelda.toString());
         zelda.addGrade(3, 4);
-        System.out.println(zelda.toString());
+        System.out.println(zelda);
 
     }
 }
